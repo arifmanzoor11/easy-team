@@ -1,0 +1,53 @@
+# Our Team - WordPress Plugin
+
+## Plugin Documentation
+Welcome to the documentation for the **Our Team** plugin. This plugin allows you to efficiently manage and display team members on your WordPress website.
+
+## Shortcode Usage
+Use the `[our_team]` shortcode to display team members dynamically. You can customize the output using the following attributes:
+
+### **Available Attributes:**
+- **`count`**: Specify the number of team members to display. Use `-1` to display all.
+  - Example: `[our_team count="2"]`
+- **`order`**: Set the order of team members. Accepts `asc` (ascending) or `desc` (descending).
+  - Example: `[our_team order="desc"]`
+- **`orderby`**: Define the sorting parameter. Options: `title`, `date`, `ID`.
+  - Example: `[our_team orderby="date"]`
+- **`columnsWidth`**: Adjust the width of each column displaying a team member. This value represents the width in percentages and supports predefined options such as 25, 20, 50, and 100.
+  - Example: `[our_team columnsWidth="33"]`
+  - **25**: Displays four team members per row (25% width each).
+  - **20**: Displays five team members per row (20% width each).
+  - **50**: Displays two team members per row (50% width each).
+  - **100**: Displays one team member per row (100% width).
+- **`user_id`**: Specify the user ID to filter and display team members associated with a specific user.
+  - Example: `[our_team user_id="1"]`
+
+### **Examples:**
+- **Display all team members in ascending order by title:**  
+  `[our_team count="-1" order="asc" orderby="title"]`
+- **Show the 5 most recent team members:**  
+  `[our_team count="5" order="desc" orderby="date"]`
+- **Display a single team member with ID-based sorting:**  
+  `[our_team count="1" orderby="ID"]`
+- **Set column width to 50% for team members:**  
+  `[our_team count="4" columnsWidth="50"]`
+- **Display team members linked to user ID 3:**  
+  `[our_team user_id="3"]`
+- **Display multiple team members linked:**  
+  `[our_team user_id="3,6,9,32"]`
+
+## Settings
+You can configure additional plugin options under the **Settings** tab in the "Our Team" menu.
+
+### **Style Options**
+Customize the appearance of team member listings with the following styles:
+- **Style 1**: Basic font with margins.
+- **Style 2**: Italic font style.
+- **Style 3**: Underlined font style.
+
+## Support
+If you have any questions or need assistance, please contact the plugin developer.
+
+---
+Enjoy using the **Our Team** plugin to showcase your team members effortlessly!
+
