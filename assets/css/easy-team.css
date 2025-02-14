@@ -4,24 +4,36 @@
 }
 
 .easy-team-member {
+    padding: 5px;
+}
+.easy-team-member-20 {
+    flex: 0 0 auto;
+    width: 20%; /* Default for larger screens */
+}
+.easy-team-member-25 {
     flex: 0 0 auto;
     width: 25%; /* Default for larger screens */
 }
-
+.easy-team-member-50 {
+    flex: 0 0 auto;
+    width: 50%; /* Default for larger screens */
+}
+.easy-team-member-100 {
+    flex: 0 0 auto;
+    width: 100%; /* Default for larger screens */
+}
 /* Medium screens (e.g., tablets) */
-@media (max-width: 768px) {
+@media (max-width: 990px) {
     .easy-team-member {
         width: 50%; /* Adjust to two members per row */
     }
 }
-
 /* Small screens (e.g., mobile) */
-@media (max-width: 480px) {
+@media (max-width: 786px) {
     .easy-team-member {
         width: 100%; /* One member per row */
     }
 }
-
 
 .team-modal {
     position: fixed;
@@ -46,8 +58,8 @@
 .close-modal {
     position: absolute;
     top: 10px;
-    right: 10px;
-    font-size: 18px;
+    right: 20px;
+    font-size: 30px;
     cursor: pointer;
 }
 /* Frontend-specific styles */
@@ -89,3 +101,4 @@
     text-decoration: none;
     border-radius: 5px;
     display: inline-block;}
+.d-middle{display: grid; align-content: center;}

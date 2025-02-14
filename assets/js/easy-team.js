@@ -13,14 +13,14 @@ jQuery(document).ready(function($) {
                 <div class="modal-column">
                     <img src="${image}" alt="${name}" style="max-width: 100%; width: 100%; border-radius: 8px;">
                 </div>
-                <div class="modal-column">
+                <div class="modal-column d-middle">
                     <h3 style="font-size:22px;">${name}</h3>
                     <p><strong>Job Title:</strong> ${job}</p>
                     <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
                     <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
                     <p><a class="downloadbtn" href="${vcard}" download>Download vCard</a></p>
                 </div>
-                <div class="modal-column" style="font-size:13px;">
+                <div class="modal-column d-middle" style="font-size:13px;">
         <p>${content}</p>
                 </div>
             </div>

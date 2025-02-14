@@ -1,5 +1,4 @@
 <?php
-
 // Add Documentation Page
 // Add Documentation Submenu under "Our Team" Settings
 function our_team_add_documentation_page() {
@@ -13,6 +12,7 @@ function our_team_add_documentation_page() {
     );
 }
 add_action('admin_menu', 'our_team_add_documentation_page');
+
 // Documentation Page Callback
 function our_team_documentation_page() {
     ?>
@@ -29,7 +29,19 @@ function our_team_documentation_page() {
                 Example: <code>[our_team order="desc"]</code></li>
             <li><strong>orderby</strong>: Define the parameter to order by. Options include <code>title</code>, <code>date</code>, or <code>ID</code>.<br>
                 Example: <code>[our_team orderby="date"]</code></li>
+            <li><strong>columnsWidth</strong>: Adjust the width of each column displaying a team member. This value represents the width in percentages and supports predefined options such as <code>25</code>, <code>20</code>, <code>50</code>, and <code>100</code>.<br>
+                Example: <code>[our_team columnsWidth="33"]</code><br>
+                <ul>
+                    <li><code>25</code>: Displays four team members per row (25% width each).</li>
+                    <li><code>20</code>: Displays five team members per row (20% width each).</li>
+                    <li><code>50</code>: Displays two team members per row (50% width each).</li>
+                    <li><code>100</code>: Displays one team member per row (100% width).</li>
+                </ul>
+            </li>
+            <li><strong>user_id</strong>: Specify the user ID to filter and display team members associated with a specific user.<br>
+                Example: <code>[our_team user_id="1"]</code></li>
         </ul>
+
 
         <h3>Examples:</h3>
         <ul>
@@ -39,6 +51,12 @@ function our_team_documentation_page() {
                 <code>[our_team count="5" order="desc" orderby="date"]</code></li>
             <li>Display a single team member with ID-based sorting:<br>
                 <code>[our_team count="1" orderby="ID"]</code></li>
+            <li>Set column width to 50% for team members:<br>
+                <code>[our_team count="4" columnsWidth="50"]</code></li>
+            <li>Display team members linked to user ID 3:<br>
+                <code>[our_team user_id="3"]</code></li>
+                <li>Display multiple team members linked:<br>
+                <code>[our_team user_id="3,6,9,32"]</code></li>
         </ul>
 
         <h2>Settings</h2>

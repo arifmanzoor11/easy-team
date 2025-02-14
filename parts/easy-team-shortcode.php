@@ -6,6 +6,8 @@ function our_team_shortcode($atts) {
         'count' => -1,            // Display all team members by default
         'order' => 'asc',         // Default order is ascending
         'orderby' => 'title',     // Default order by post title
+        'columnswidth' => '25',   // Default column width
+        'user_id' => '',          // Default user ID(s)
     ), $atts, 'our_team');
 
     // Fetch style options
@@ -21,32 +23,42 @@ function our_team_shortcode($atts) {
         'style2' => 'font-style: italic; font-size: 18px; color: #2E86C1; background-color: #E8F8F5; padding: 10px; margin: 10px; border: 2px dashed #2E86C1; border-radius: 8px;',
         'style3' => 'text-decoration: underline; font-size: 16px; color: #239B56; font-family: "Courier New", Courier, monospace; margin: 15px; padding: 12px; background-color: #EAFAF1; border: 2px dotted #239B56; border-radius: 10px;',
     );
-    
+
+    // Prepare user IDs
+    $user_ids = array_filter(array_map('trim', explode(',', $atts['user_id'])));
 
     // Set up WP_Query arguments
     $query_args = array(
         'post_type'      => 'our_team',
         'posts_per_page' => intval($atts['count']),
         'order'          => strtoupper($atts['order']) === 'DESC' ? 'DESC' : 'ASC',
-        'orderby'        => in_array($atts['orderby'], ['title', 'date', 'ID'], true) ? $atts['orderby'] : 'title',
+        'orderby'        => !empty($user_ids) ? 'post__in' : (in_array($atts['orderby'], ['title', 'date', 'ID'], true) ? $atts['orderby'] : 'title'),
     );
 
+    // Include the IDs if provided
+    if (!empty($user_ids)) {
+        $query_args['post__in'] = $user_ids;
+    }
+
+    // Include inline styles
     ?>
-<style>
-            .downloadbtn{
-                background-color: <?php echo esc_attr($button_bg_color); ?>;
-                border: none;
-                color: <?php echo esc_attr($button_text_color); ?>;
-                padding: <?php echo esc_attr($button_padding); ?>;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: <?php echo esc_attr($button_margin); ?>;
-                cursor: pointer;
-            }
-        </style>
+    <style>
+        .downloadbtn {
+            background-color: <?php echo esc_attr($button_bg_color); ?>;
+            border: none;
+            color: <?php echo esc_attr($button_text_color); ?>;
+            padding: <?php echo esc_attr($button_padding); ?>;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: <?php echo esc_attr($button_margin); ?>;
+            cursor: pointer;
+        }
+    </style>
     <?php
+
+    // Fetch posts using WP_Query
     $query = new WP_Query($query_args);
 
     if ($query->have_posts()) {
@@ -62,6 +74,7 @@ function our_team_shortcode($atts) {
         <?php
         while ($query->have_posts()) {
             $query->the_post();
+            // echo get_the_ID();
             // Fetch metadata
             $job_title = get_post_meta(get_the_ID(), '_team_member_job_title', true);
             $email = get_post_meta(get_the_ID(), '_team_member_email', true);
@@ -69,7 +82,7 @@ function our_team_shortcode($atts) {
             $img = get_the_post_thumbnail_url(get_the_ID(), 'full');
             $content = get_the_content();
             $vcard_link = add_query_arg(array('download_vcard' => get_the_ID()), home_url()); ?>
-            <div class="easy-team-member">
+            <div class="easy-team-member-<?php echo esc_attr($atts['columnswidth']); ?> easy-team-member">
                 <div class="easy-member">
                     <a class="view-details-btn" style="cursor: pointer;" 
                         data-name="<?php echo esc_html(get_the_title()); ?>" 
